@@ -129,9 +129,9 @@ export default function App() {
       console.log(error);
     }
   };
-  const editMe =  (key) => {
+  const editMe =  (key, flag) => {
     const newToDos = {...toDos}
-    newToDos[key].editMode = true;
+    newToDos[key].editMode = flag;
     setToDos(newToDos);
   }
   return (
@@ -186,7 +186,7 @@ export default function App() {
               </TouchableOpacity>
 
               <View style={styles.toDoText}>
-                <TouchableOpacity onPress={() => editMe(key)}>
+                <TouchableOpacity onPress={() => editMe(key, true)}>
                   {toDos[key].editMode ? (
                     <TextInput
                       style={styles.edit}
@@ -198,7 +198,7 @@ export default function App() {
                   ) : (
                     <Text
                       style={{
-                        ...styles.toDoText,
+                        color: '#FFFFFF',
                         textDecorationLine: toDos[key].check
                           ? "line-through"
                           : null,
@@ -260,8 +260,6 @@ const styles = StyleSheet.create({
   },
   toDoText: {
     flex: 0.9, 
-    color: 'white'
-
   },
   edit: {
     backgroundColor: theme.lg,
